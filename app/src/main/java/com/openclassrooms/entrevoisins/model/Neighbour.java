@@ -1,5 +1,8 @@
 package com.openclassrooms.entrevoisins.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 /**
@@ -8,12 +11,18 @@ import java.util.Objects;
 public class Neighbour {
 
     /** Identifier */
+    @SerializedName("identifier")
+    @Expose
     private Integer id;
 
     /** Full name */
+    @SerializedName("full_name")
+    @Expose
     private String name;
 
     /** Avatar */
+    @SerializedName("avatar_url")
+    @Expose
     private String avatarUrl;
 
     /**

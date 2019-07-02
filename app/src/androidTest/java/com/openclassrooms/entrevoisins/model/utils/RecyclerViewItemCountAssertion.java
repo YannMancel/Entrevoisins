@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.utils;
+package com.openclassrooms.entrevoisins.model.utils;
 
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewAssertion;

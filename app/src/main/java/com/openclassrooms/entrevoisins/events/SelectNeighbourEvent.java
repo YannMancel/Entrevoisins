@@ -3,9 +3,11 @@ package com.openclassrooms.entrevoisins.events;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 /**
- * Event fired when a user deletes a Neighbour
+ * Created by Yann MANCEL on 01/07/2019.
+ * Name of the project: Entrevoisins
+ * Name of the package: com.openclassrooms.entrevoisins.events
  */
-public class DeleteNeighbourEvent {
+public class SelectNeighbourEvent {
 
     // FIELDS --------------------------------------------------------------------------------------
 
@@ -17,7 +19,7 @@ public class DeleteNeighbourEvent {
      * Constructor.
      * @param neighbour
      */
-    public DeleteNeighbourEvent(Neighbour neighbour) {
+    public SelectNeighbourEvent(Neighbour neighbour) {
         this.neighbour = neighbour;
     }
 }

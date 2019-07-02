@@ -8,7 +8,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
-import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
+import com.openclassrooms.entrevoisins.model.utils.DeleteViewAction;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,7 +19,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
-import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static com.openclassrooms.entrevoisins.model.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
