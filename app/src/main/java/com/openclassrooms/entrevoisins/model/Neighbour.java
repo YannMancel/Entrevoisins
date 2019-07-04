@@ -10,20 +10,19 @@ import java.util.Objects;
  */
 public class Neighbour {
 
-    /** Identifier */
+    // FIELDS --------------------------------------------------------------------------------------
+
     @SerializedName("identifier")
     @Expose
     private Integer id;
-
-    /** Full name */
     @SerializedName("full_name")
     @Expose
     private String name;
-
-    /** Avatar */
     @SerializedName("avatar_url")
     @Expose
     private String avatarUrl;
+
+    // CONSTRUCTORS --------------------------------------------------------------------------------
 
     /**
      * Constructor
@@ -36,6 +35,8 @@ public class Neighbour {
         this.name = name;
         this.avatarUrl = avatarUrl;
     }
+
+    // METHODS -------------------------------------------------------------------------------------
 
     public Integer getId() {
         return id;

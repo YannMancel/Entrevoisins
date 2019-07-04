@@ -13,6 +13,9 @@
     <string name="profile_basic_text">A propos de moi</string>
     <string name="profile_description">"Bonjour! Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner! J'aime les jeux de cartes tels la belote et le tarot."</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Java files -->
+
+        <!-- ProfileNeighbourActivity.java -->
+        <string name="add_favorite">Add favorite</string>
+        <string name="remove_favorite">Remove favorite</string>
 </resources>

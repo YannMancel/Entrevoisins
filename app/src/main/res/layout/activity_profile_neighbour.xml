@@ -45,14 +45,16 @@
                 <!-- TOOLBAR -->
 
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/activity_profile_neighbour_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    android:background="@android:color/transparent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                android:id="@+id/activity_profile_neighbour_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:background="@android:color/transparent"
+                app:title="@string/app_name"
+                app:titleTextColor="@android:color/transparent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
                 <!-- USERNAME -->
 
@@ -127,9 +129,10 @@
 
                 <ImageView
                     android:id="@+id/activity_profile_neighbour_iv_icon_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/size_icon"
+                    android:layout_height="@dimen/size_icon"
                     android:layout_marginStart="@dimen/cardview_margin_horizontal"
+                    android:layout_marginTop="@dimen/bottom_and_bottom_margin_other_title"
                     android:paddingTop="@dimen/top_padding_other_title"
                     android:paddingBottom="@dimen/bottom_padding_other_title"
                     android:paddingEnd="@dimen/end_padding_other_title"
@@ -145,6 +148,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/profile_address"
                     android:textSize="@dimen/text_size_other_title"
+                    android:textAlignment="textStart"
                     app:layout_constraintBottom_toBottomOf="@id/activity_profile_neighbour_iv_icon_address"
                     app:layout_constraintStart_toEndOf="@id/activity_profile_neighbour_iv_icon_address"
                     app:layout_constraintTop_toTopOf="@id/activity_profile_neighbour_iv_icon_address" />
@@ -153,10 +157,10 @@
 
                 <ImageView
                     android:id="@+id/activity_profile_neighbour_iv_icon_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/size_icon"
+                    android:layout_height="@dimen/size_icon"
                     android:layout_marginStart="@dimen/cardview_margin_horizontal"
-                    android:paddingTop="@dimen/top_padding_other_title"
+                    android:paddingTop="@dimen/bottom_padding_other_title"
                     android:paddingBottom="@dimen/bottom_padding_other_title"
                     android:paddingEnd="@dimen/end_padding_other_title"
                     android:src="@drawable/ic_call_white_24dp"
@@ -169,9 +173,9 @@
                     android:id="@+id/activity_profile_neighbour_tv_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/appbar_padding_top"
                     android:text="@string/profile_phone_number"
                     android:textSize="@dimen/text_size_other_title"
+                    android:textAlignment="textStart"
                     app:layout_constraintBottom_toBottomOf="@id/activity_profile_neighbour_iv_icon_phone"
                     app:layout_constraintStart_toEndOf="@id/activity_profile_neighbour_iv_icon_phone"
                     app:layout_constraintTop_toTopOf="@id/activity_profile_neighbour_iv_icon_phone" />
@@ -180,15 +184,17 @@
 
                 <ImageView
                     android:id="@+id/activity_profile_neighbour_iv_icon_url"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/size_icon"
+                    android:layout_height="@dimen/size_icon"
                     android:layout_marginStart="@dimen/cardview_margin_horizontal"
-                    android:paddingTop="@dimen/top_padding_other_title"
-                    android:paddingBottom="@dimen/bottom_padding_other_title"
+                    android:layout_marginBottom="@dimen/bottom_and_bottom_margin_other_title"
+                    android:paddingTop="@dimen/bottom_padding_other_title"
+                    android:paddingBottom="@dimen/top_padding_other_title"
                     android:paddingEnd="@dimen/end_padding_other_title"
                     android:src="@drawable/ic_language_white_24dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_iv_icon_phone" />
+                    app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_iv_icon_phone"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <!-- URL -->
 
@@ -196,12 +202,12 @@
                     android:id="@+id/activity_profile_neighbour_tv_url"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/appbar_padding_top"
                     android:text="@string/profile_url"
+                    android:textAlignment="textStart"
                     android:textSize="@dimen/text_size_other_title"
                     app:layout_constraintBottom_toBottomOf="@id/activity_profile_neighbour_iv_icon_url"
                     app:layout_constraintStart_toEndOf="@id/activity_profile_neighbour_iv_icon_url"
-                    app:layout_constraintTop_toTopOf="@id/activity_profile_neighbour_iv_icon_url" />
+                    app:layout_constraintTop_toTopOf="@+id/activity_profile_neighbour_iv_icon_url" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -270,7 +276,8 @@
                     android:textSize="@dimen/text_size_other_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_v_separator2"/>
+                    app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_v_separator2"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </android.support.constraint.ConstraintLayout>
 
@@ -289,7 +296,7 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:clickable="true"
         android:src="@drawable/ic_star_border_white_24dp"
-        android:tint="@android:color/black"
+        android:tint="@color/fab_favorite_is_false"
         app:backgroundTint="@color/backgroundFAB"/>
 
 </android.support.design.widget.CoordinatorLayout>

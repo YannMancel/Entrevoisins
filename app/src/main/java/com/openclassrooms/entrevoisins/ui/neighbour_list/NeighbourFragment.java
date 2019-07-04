@@ -1,6 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +13,6 @@ import com.openclassrooms.entrevoisins.events.SelectNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
@@ -46,7 +44,8 @@ public class NeighbourFragment extends BaseFragment {
         // Configures the RecyclerView
         this.configureRecyclerView();
 
-        initList();
+        // Initializes the RecyclerView
+        this.initList();
     }
 
     // FRAGMENT ************************************************************************************
@@ -57,27 +56,14 @@ public class NeighbourFragment extends BaseFragment {
         this.mApiService = DI.getNeighbourApiService();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-
     // UI ******************************************************************************************
 
     /**
      * Configures {@link RecyclerView}
      */
     private void configureRecyclerView() {
-        Context context = getContext();
-        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        this.mRecyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mContext));
+        this.mRecyclerView.addItemDecoration(new DividerItemDecoration(this.mContext, DividerItemDecoration.VERTICAL));
     }
 
     // INSTANCE ************************************************************************************
@@ -99,7 +85,9 @@ public class NeighbourFragment extends BaseFragment {
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         this.mApiService.deleteNeighbour(event.neighbour);
-        initList();
+
+        // Initializes the RecyclerView
+        this.initList();
     }
 
     /**
@@ -111,7 +99,7 @@ public class NeighbourFragment extends BaseFragment {
         this.mCallback.onItemClickedOfRecyclerView(event.neighbour);
     }
 
-    // INITIALISATION ******************************************************************************
+    // INITIALISATION OF RECYCLER VIEW *************************************************************
 
     /**
      * Init the List of neighbours

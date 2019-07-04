@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import butterknife.ButterKnife;
 
@@ -16,6 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     // METHODS -------------------------------------------------------------------------------------
 
     protected abstract int getActivityLayout();
+    protected abstract Toolbar getToolBar();
     protected abstract void configureDesign();
 
     // ACTIVITY ************************************************************************************
@@ -40,6 +42,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * Configures a {@link android.support.v7.widget.Toolbar} in adding the Up button
      */
     protected void configureToolBar() {
+        // If ToolBar exists
+        if (this.getToolBar() != null) {
+            setSupportActionBar(this.getToolBar());
+        }
+
         // Gets a Support ActionBar corresponding to this ToolBar
         ActionBar actionBar = getSupportActionBar();
 

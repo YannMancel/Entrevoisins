@@ -9,4 +9,6 @@
     <color name="separatorCardView">#FAFAFA</color>
     <color name="backgroundFAB">#F5F5F5</color>
     <color name="mainTitle">#4B4B4B</color>
+    <color name="fab_favorite_is_true">#FFC107</color>
+    <color name="fab_favorite_is_false">#000000</color>
 </resources>

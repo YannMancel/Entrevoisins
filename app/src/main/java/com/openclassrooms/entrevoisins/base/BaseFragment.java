@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 
 /**
@@ -24,6 +26,7 @@ public abstract class BaseFragment extends Fragment {
 
     // FIELDS --------------------------------------------------------------------------------------
 
+    protected Context mContext;
     protected ItemOfRecyclerViewListener mCallback;
 
     // CONSTRUCTORS --------------------------------------------------------------------------------
@@ -40,6 +43,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        // Retrieve the Context of the Fragment
+        this.mContext = context;
 
         // Configures the callback to the parent activity
         this.configureCallbackToParentActivity();
@@ -58,6 +64,18 @@ public abstract class BaseFragment extends Fragment {
         this.configureDesign();
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     // CALLBACK OF ACTIVITY ************************************************************************

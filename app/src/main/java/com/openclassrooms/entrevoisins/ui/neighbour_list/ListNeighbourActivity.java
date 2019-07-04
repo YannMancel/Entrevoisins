@@ -41,6 +41,11 @@ public class ListNeighbourActivity extends BaseActivity implements BaseFragment.
     }
 
     @Override
+    protected Toolbar getToolBar() {
+        return this.mToolbar;
+    }
+
+    @Override
     protected void configureDesign() {
         setSupportActionBar(this.mToolbar);
 
