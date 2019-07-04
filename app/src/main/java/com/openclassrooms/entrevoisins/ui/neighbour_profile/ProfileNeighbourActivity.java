@@ -96,8 +96,8 @@ public class ProfileNeighbourActivity extends BaseActivity {
     @OnClick(R.id.activity_profile_neighbour_fab)
     public void onFABClicked() {
         // Displays a message
-        this.showSnackbar(this.mCoordinatorLayout, !this.mIsFavorite ? getString(R.string.add_favorite) :
-                getString(R.string.remove_favorite));
+        this.showSnackbar(this.mCoordinatorLayout, !this.mIsFavorite ? getString(R.string.add_favorite, this.mNeighbour.getName()) :
+                                                                       getString(R.string.remove_favorite, this.mNeighbour.getName()));
 
         // Adds or removes the neighbour in SharedPreferences
         if (this.mIsFavorite) {

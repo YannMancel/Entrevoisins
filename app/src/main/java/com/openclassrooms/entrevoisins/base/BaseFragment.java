@@ -24,10 +24,15 @@ public abstract class BaseFragment extends Fragment {
         void onItemClickedOfRecyclerView(final Neighbour neighbour);
     }
 
+    public interface SnackbarListener {
+        void showSnackbarFromFragment(final String message);
+    }
+
     // FIELDS --------------------------------------------------------------------------------------
 
     protected Context mContext;
     protected ItemOfRecyclerViewListener mCallback;
+    protected SnackbarListener mSnackbarCallback;
 
     // CONSTRUCTORS --------------------------------------------------------------------------------
 
@@ -81,15 +86,23 @@ public abstract class BaseFragment extends Fragment {
     // CALLBACK OF ACTIVITY ************************************************************************
 
     /**
-     * Configures the {@link ItemOfRecyclerViewListener} (callback) to the parent activity
+     * Configures {@link ItemOfRecyclerViewListener} and {@link SnackbarListener}(callbacks) to the parent activity
      */
     private void configureCallbackToParentActivity() {
-        // Initializes the callback field
+        // Initializes the ItemOfRecyclerViewListener (callback) field
         try {
             this.mCallback = (ItemOfRecyclerViewListener) getActivity();
         }
         catch (ClassCastException e){
             throw new ClassCastException(e.toString() + " must implement ItemOfRecyclerViewListener");
+        }
+
+        // Initializes the SnackbarListener (callback) field
+        try {
+            this.mSnackbarCallback = (SnackbarListener) getActivity();
+        }
+        catch (ClassCastException e){
+            throw new ClassCastException(e.toString() + " must implement SnackbarListener");
         }
     }
 }

@@ -16,6 +16,6 @@
     <!-- Java files -->
 
         <!-- ProfileNeighbourActivity.java -->
-        <string name="add_favorite">Add favorite</string>
-        <string name="remove_favorite">Remove favorite</string>
+        <string name="add_favorite">Add %s to favorite</string>
+        <string name="remove_favorite">Remove %s to favorite</string>
 </resources>

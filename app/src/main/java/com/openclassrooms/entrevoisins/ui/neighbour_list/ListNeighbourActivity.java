@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -18,9 +19,13 @@ import static com.openclassrooms.entrevoisins.model.utils.JsonTools.convertJavaT
 /**
  * A {@link BaseActivity} subclass.
  */
-public class ListNeighbourActivity extends BaseActivity implements BaseFragment.ItemOfRecyclerViewListener {
+public class ListNeighbourActivity extends BaseActivity implements BaseFragment.ItemOfRecyclerViewListener,
+                                                                   BaseFragment.SnackbarListener {
 
     // FIELDS --------------------------------------------------------------------------------------
+
+    @BindView(R.id.main_content)
+    CoordinatorLayout mCoordinatorLayout;
 
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
@@ -60,6 +65,11 @@ public class ListNeighbourActivity extends BaseActivity implements BaseFragment.
     @Override
     public void onItemClickedOfRecyclerView(final Neighbour neighbour) {
         this.startProfileNeighbourActivity(neighbour);
+    }
+
+    @Override
+    public void showSnackbarFromFragment(String message) {
+        this.showSnackbar(this.mCoordinatorLayout, message);
     }
 
     // LAUNCHER OF ACTIVITY ************************************************************************

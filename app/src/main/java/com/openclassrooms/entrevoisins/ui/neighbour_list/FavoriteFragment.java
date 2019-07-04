@@ -3,10 +3,10 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.base.BaseFragment;
+import com.openclassrooms.entrevoisins.events.DeleteFavoriteEvent;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.SelectNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
@@ -68,12 +68,15 @@ public class FavoriteFragment extends BaseFragment {
      * @param event a {@link DeleteNeighbourEvent}
      */
     @Subscribe
-    public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-//        this.mApiService.deleteNeighbour(event.neighbour);
+    public void onDeleteFavoriteNeighbour(DeleteFavoriteEvent event) {
+        // Remove neighbour of favorite
+        this.removeNeighbourToFavorite(event.neighbour);
 
         // Initializes the RecyclerView
-//        this.initList();
-        Log.e("TAG", "FavoriteFragment: DELETE Neighbour");
+        this.initList();
+
+        // Displays a message with the parent activity
+        this.mSnackbarCallback.showSnackbarFromFragment("Delete favorite: " + event.neighbour.getName());
     }
 
     /**
@@ -82,8 +85,8 @@ public class FavoriteFragment extends BaseFragment {
      */
     @Subscribe
     public void onSelectNeighbour(SelectNeighbourEvent event) {
-//        this.mCallback.onItemClickedOfRecyclerView(event.neighbour);
-        Log.e("TAG", "FavoriteFragment: SELECT Neighbour");
+        // Warning: EvenBus throws 2 calls (1 with FavoriteFragment + 1 with NeighbourFragment
+        this.mCallback.onItemClickedOfRecyclerView(event.neighbour);
     }
 
     // UI ******************************************************************************************
@@ -106,7 +109,7 @@ public class FavoriteFragment extends BaseFragment {
         this.retrieveSharedPreferences();
 
         if (this.mNeighbours != null) {
-//            this.mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(this.mNeighbours));
+            this.mRecyclerView.setAdapter(new MyFavoriteRecyclerViewAdapter(this.mNeighbours));
         }
     }
 
@@ -118,5 +121,16 @@ public class FavoriteFragment extends BaseFragment {
     private void retrieveSharedPreferences() {
         // Retrieves the neighbour list from SharedPreferences
         this.mNeighbours = SaveTools.loadListFromSharedPreferences(this.mContext, ProfileNeighbourActivity.PREF_NEIGHBOURS, Neighbour.class);
+    }
+
+    /**
+     * Remove a {@link Neighbour} to the favorite {@link Neighbour} thanks to {@link android.content.SharedPreferences}
+     */
+    private void removeNeighbourToFavorite(final Neighbour neighbour) {
+        // Removes the neighbour to the favorite list
+        this.mNeighbours.remove(neighbour);
+
+        // Save the favorite list
+        SaveTools.saveSharedPreferencesWithJson(this.mContext, this.mNeighbours, ProfileNeighbourActivity.PREF_NEIGHBOURS);
     }
 }

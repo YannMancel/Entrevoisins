@@ -88,6 +88,9 @@ public class NeighbourFragment extends BaseFragment {
 
         // Initializes the RecyclerView
         this.initList();
+
+        // Displays a message with the parent activity
+        this.mSnackbarCallback.showSnackbarFromFragment("Delete: " + event.neighbour.getName());
     }
 
     /**
