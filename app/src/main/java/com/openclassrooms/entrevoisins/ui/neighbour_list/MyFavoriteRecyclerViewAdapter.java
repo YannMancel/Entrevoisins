@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.openclassrooms.entrevoisins.base.BaseRecyclerViewAdapter;
 import com.openclassrooms.entrevoisins.events.DeleteFavoriteEvent;
+import com.openclassrooms.entrevoisins.events.SelectFavoriteEvent;
 import com.openclassrooms.entrevoisins.events.SelectNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
@@ -30,7 +31,7 @@ public class MyFavoriteRecyclerViewAdapter extends BaseRecyclerViewAdapter {
         holder.mGlobalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new SelectNeighbourEvent(neighbour));
+                EventBus.getDefault().post(new SelectFavoriteEvent(neighbour));
             }
         });
 

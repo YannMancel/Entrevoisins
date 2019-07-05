@@ -8,6 +8,7 @@ import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.base.BaseFragment;
 import com.openclassrooms.entrevoisins.events.DeleteFavoriteEvent;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.SelectFavoriteEvent;
 import com.openclassrooms.entrevoisins.events.SelectNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.model.utils.SaveTools;
@@ -65,7 +66,7 @@ public class FavoriteFragment extends BaseFragment {
 
     /**
      * Fired if the user clicks on a delete button
-     * @param event a {@link DeleteNeighbourEvent}
+     * @param event a {@link DeleteFavoriteEvent}
      */
     @Subscribe
     public void onDeleteFavoriteNeighbour(DeleteFavoriteEvent event) {
@@ -81,11 +82,10 @@ public class FavoriteFragment extends BaseFragment {
 
     /**
      * Launches {@link BaseFragment.ItemOfRecyclerViewListener} (callback) if the user clicks on the item
-     * @param event a {@link SelectNeighbourEvent}
+     * @param event a {@link SelectFavoriteEvent}
      */
     @Subscribe
-    public void onSelectNeighbour(SelectNeighbourEvent event) {
-        // Warning: EvenBus throws 2 calls (1 with FavoriteFragment + 1 with NeighbourFragment
+    public void onSelectNeighbour(SelectFavoriteEvent event) {
         this.mCallback.onItemClickedOfRecyclerView(event.neighbour);
     }
 
