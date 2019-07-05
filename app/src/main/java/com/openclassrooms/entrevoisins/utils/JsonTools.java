@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.model.utils;
+package com.openclassrooms.entrevoisins.utils;
 
 import com.google.gson.Gson;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Yann MANCEL on 02/07/2019.
  * Name of the project: Entrevoisins
- * Name of the package: com.openclassrooms.entrevoisins.model.utils
+ * Name of the package: com.openclassrooms.entrevoisins.utils
  */
 public class JsonTools {
 

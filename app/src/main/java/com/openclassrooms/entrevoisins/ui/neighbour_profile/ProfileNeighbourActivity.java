@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.base.BaseActivity;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.model.utils.SaveTools;
+import com.openclassrooms.entrevoisins.utils.SaveTools;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.openclassrooms.entrevoisins.model.utils.JsonTools.convertJsonToJava;
+import static com.openclassrooms.entrevoisins.utils.JsonTools.convertJsonToJava;
 
 /**
  * A {@link BaseActivity} subclass.

@@ -14,7 +14,7 @@ import com.openclassrooms.entrevoisins.ui.neighbour_profile.ProfileNeighbourActi
 
 import butterknife.BindView;
 
-import static com.openclassrooms.entrevoisins.model.utils.JsonTools.convertJavaToJson;
+import static com.openclassrooms.entrevoisins.utils.JsonTools.convertJavaToJson;
 
 /**
  * A {@link BaseActivity} subclass.

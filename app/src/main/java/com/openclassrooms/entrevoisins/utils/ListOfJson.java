@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.model.utils;
+package com.openclassrooms.entrevoisins.utils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Yann MANCEL on 04/07/2019.
  * Name of the project: Entrevoisins
- * Name of the package: com.openclassrooms.entrevoisins.model.utils
+ * Name of the package: com.openclassrooms.entrevoisins.utils
  *
  * A {@link ParameterizedType} subclass.
  * @param <T> a class

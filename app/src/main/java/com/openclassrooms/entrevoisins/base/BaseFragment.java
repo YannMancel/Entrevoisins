@@ -80,6 +80,10 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+
+        // TODO: 05/07/2019 To avoid the duplication of EventBus classes [onStop() to onPause()]
+        // https://stackoverflow.com/questions/24697951/view-pager-and-fragment-lifecycle
+
         EventBus.getDefault().unregister(this);
     }
 

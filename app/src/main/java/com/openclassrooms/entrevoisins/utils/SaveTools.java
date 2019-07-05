@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.model.utils;
+package com.openclassrooms.entrevoisins.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,18 +6,18 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
-import static com.openclassrooms.entrevoisins.model.utils.JsonTools.convertJsonToJavaList;
+import static com.openclassrooms.entrevoisins.utils.JsonTools.convertJsonToJavaList;
 
 /**
  * Created by Yann MANCEL on 02/07/2019.
  * Name of the project: Entrevoisins
- * Name of the package: com.openclassrooms.entrevoisins.model.utils
+ * Name of the package: com.openclassrooms.entrevoisins.utils
  */
 public class SaveTools {
 
     // FIELDS --------------------------------------------------------------------------------------
 
-    private static final String SAVE_FILE_NAME = "com.openclassrooms.entrevoisins.model.utils.SaveTools";
+    private static final String SAVE_FILE_NAME = "com.openclassrooms.entrevoisins.utils.SaveTools";
 
     // METHODS -------------------------------------------------------------------------------------
 

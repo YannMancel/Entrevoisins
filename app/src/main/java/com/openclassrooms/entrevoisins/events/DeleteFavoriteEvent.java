@@ -9,7 +9,7 @@ public class DeleteFavoriteEvent {
 
     // FIELDS --------------------------------------------------------------------------------------
 
-    public Neighbour neighbour;
+    private Neighbour neighbour;
 
     // CONSTRUCTORS --------------------------------------------------------------------------------
 
@@ -19,5 +19,11 @@ public class DeleteFavoriteEvent {
      */
     public DeleteFavoriteEvent(Neighbour neighbour) {
         this.neighbour = neighbour;
+    }
+
+    // METHODS -------------------------------------------------------------------------------------
+
+    public Neighbour getNeighbour() {
+        return this.neighbour;
     }
 }

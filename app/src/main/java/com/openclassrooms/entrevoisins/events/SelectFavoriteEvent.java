@@ -11,7 +11,7 @@ public class SelectFavoriteEvent {
 
     // FIELDS --------------------------------------------------------------------------------------
 
-    public Neighbour neighbour;
+    private Neighbour neighbour;
 
     // CONSTRUCTORS --------------------------------------------------------------------------------
 
@@ -21,5 +21,11 @@ public class SelectFavoriteEvent {
      */
     public SelectFavoriteEvent(Neighbour neighbour) {
         this.neighbour = neighbour;
+    }
+
+    // METHODS -------------------------------------------------------------------------------------
+
+    public Neighbour getNeighbour() {
+        return this.neighbour;
     }
 }

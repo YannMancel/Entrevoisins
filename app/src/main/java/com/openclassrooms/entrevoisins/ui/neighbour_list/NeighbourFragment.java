@@ -84,13 +84,13 @@ public class NeighbourFragment extends BaseFragment {
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        this.mApiService.deleteNeighbour(event.neighbour);
+        this.mApiService.deleteNeighbour(event.getNeighbour());
 
         // Initializes the RecyclerView
         this.initList();
 
         // Displays a message with the parent activity
-        this.mSnackbarCallback.showSnackbarFromFragment("Delete: " + event.neighbour.getName());
+        this.mSnackbarCallback.showSnackbarFromFragment("Delete: " + event.getNeighbour().getName());
     }
 
     /**
@@ -99,7 +99,7 @@ public class NeighbourFragment extends BaseFragment {
      */
     @Subscribe
     public void onSelectNeighbour(SelectNeighbourEvent event) {
-        this.mCallback.onItemClickedOfRecyclerView(event.neighbour);
+        this.mCallback.onItemClickedOfRecyclerView(event.getNeighbour());
     }
 
     // INITIALISATION OF RECYCLER VIEW *************************************************************

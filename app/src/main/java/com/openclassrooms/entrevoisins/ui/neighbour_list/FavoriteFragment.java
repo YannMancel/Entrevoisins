@@ -7,11 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.base.BaseFragment;
 import com.openclassrooms.entrevoisins.events.DeleteFavoriteEvent;
-import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.SelectFavoriteEvent;
-import com.openclassrooms.entrevoisins.events.SelectNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.model.utils.SaveTools;
+import com.openclassrooms.entrevoisins.utils.SaveTools;
 import com.openclassrooms.entrevoisins.ui.neighbour_profile.ProfileNeighbourActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -71,13 +69,13 @@ public class FavoriteFragment extends BaseFragment {
     @Subscribe
     public void onDeleteFavoriteNeighbour(DeleteFavoriteEvent event) {
         // Remove neighbour of favorite
-        this.removeNeighbourToFavorite(event.neighbour);
+        this.removeNeighbourToFavorite(event.getNeighbour());
 
         // Initializes the RecyclerView
         this.initList();
 
         // Displays a message with the parent activity
-        this.mSnackbarCallback.showSnackbarFromFragment("Delete favorite: " + event.neighbour.getName());
+        this.mSnackbarCallback.showSnackbarFromFragment("Delete favorite: " + event.getNeighbour().getName());
     }
 
     /**
@@ -86,7 +84,7 @@ public class FavoriteFragment extends BaseFragment {
      */
     @Subscribe
     public void onSelectNeighbour(SelectFavoriteEvent event) {
-        this.mCallback.onItemClickedOfRecyclerView(event.neighbour);
+        this.mCallback.onItemClickedOfRecyclerView(event.getNeighbour());
     }
 
     // UI ******************************************************************************************
