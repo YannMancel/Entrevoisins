@@ -9,7 +9,7 @@ import java.util.List;
  * Name of the project: Entrevoisins
  * Name of the package: com.openclassrooms.entrevoisins.utils
  */
-public class JsonTools {
+public abstract class JsonTools {
 
     /**
      * Converts a Java class to a Json format

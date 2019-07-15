@@ -13,7 +13,7 @@ import static com.openclassrooms.entrevoisins.utils.JsonTools.convertJsonToJavaL
  * Name of the project: Entrevoisins
  * Name of the package: com.openclassrooms.entrevoisins.utils
  */
-public class SaveTools {
+public abstract class SaveTools {
 
     // FIELDS --------------------------------------------------------------------------------------
 

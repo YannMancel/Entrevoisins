@@ -8,7 +8,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.service.DummyNeighbourApiService;
+import com.openclassrooms.entrevoisins.service.DummyNeighbourGenerator;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.ui.neighbour_profile.ProfileNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
@@ -32,6 +32,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 /**
@@ -44,7 +45,7 @@ public class NeighboursListTest {
 
     private static int POSITION_ITEM = 0;
     private ListNeighbourActivity mActivity;
-    private List<Neighbour> mNeighbourList = new DummyNeighbourApiService().getNeighbours();
+    private List<Neighbour> mNeighbourList = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
 
     // RULES ---------------------------------------------------------------------------------------
 
@@ -126,45 +127,53 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_selectAction_shouldBeFavorite() {
-        // Retrieves the neighbour at [POSITION_ITEM]
-        Neighbour expectedNeighbour = this.mNeighbourList.get(POSITION_ITEM);
-
         // Clear the SharedPreferences
         SaveTools.removeDataFromSharedPreferences(this.mActivity, ProfileNeighbourActivity.PREF_NEIGHBOURS);
 
         // When : We perform a click on favorite button of ProfileActivity
+        for (int i=0 ; i<this.mNeighbourList.size() ; i++) {
+            // Clicks on item of RecyclerView
+            onView(ViewMatchers.withId(R.id.list_neighbours))
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(i, new SelectViewAction()));
 
-        // Clicks on item of RecyclerView
-        onView(ViewMatchers.withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, new SelectViewAction()));
+            // Clicks on FAB of ProfileActivity
+            onView(ViewMatchers.withId(R.id.activity_profile_neighbour_fab))
+                    .perform((ViewAction) click());
 
-        // Clicks on FAB of ProfileActivity
-        onView(ViewMatchers.withId(R.id.activity_profile_neighbour_fab))
-                .perform((ViewAction) click());
-
-        // Clicks on the Up button of the ToolBar [or pressBack()]
-        onView(withContentDescription("Navigate up"))
-                .perform(click());
+            // Clicks on the Up button of the ToolBar [or pressBack()]
+            onView(withContentDescription("Navigate up"))
+                    .perform(click());
+        }
 
         // Swipe from [My neighbour] to [Favorites] of ViewPager
         onView(ViewMatchers.withId(R.id.container))
                 .perform(scrollRight());
 
-        // Checks if the recyclerView is displayed and clicks on the item at [POSITION_ITEM]
-
-        // Checks the list contains only one item
+        // Then: Checks if the RecyclerView contains all neighbour of the list
         onView(ViewMatchers.withId(R.id.fragment_favorite_rv_list_neighbours))
-                .check(withItemCount(1));
+                .check(withItemCount(this.mNeighbourList.size()));
 
-        onView(ViewMatchers.withId(R.id.fragment_favorite_rv_list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, new SelectViewAction()));
+        // Checks if the neighbour are the good neighbour
+        for (int i=0 ; i<this.mNeighbourList.size() ; i++) {
+            // Clicks on item of RecyclerView
+            onView(ViewMatchers.withId(R.id.fragment_favorite_rv_list_neighbours))
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(i, new SelectViewAction()));
 
-        // Then : the user profile is shown and it displays the good personal data
-        onView(ViewMatchers.withId(R.id.activity_profile_neighbour_tv_name1))
-                .check(matches(withText(expectedNeighbour.getName())));
+            // Then : the user profile is shown and it displays the good personal data
+            onView(ViewMatchers.withId(R.id.activity_profile_neighbour_tv_name1))
+                    .check(matches(withText(this.mNeighbourList.get(i).getName())));
 
-        onView(ViewMatchers.withId(R.id.activity_profile_neighbour_tv_name2))
-                .check(matches(withText(expectedNeighbour.getName())));
+            onView(ViewMatchers.withId(R.id.activity_profile_neighbour_tv_name2))
+                    .check(matches(withText(this.mNeighbourList.get(i).getName())));
+
+            // Clicks on the Up button of the ToolBar [or pressBack()]
+            onView(withContentDescription("Navigate up"))
+                    .perform(click());
+
+            // Swipe from [My neighbour] to [Favorites] of ViewPager
+            onView(ViewMatchers.withId(R.id.container))
+                    .perform(scrollRight());
+        }
     }
 
     /**

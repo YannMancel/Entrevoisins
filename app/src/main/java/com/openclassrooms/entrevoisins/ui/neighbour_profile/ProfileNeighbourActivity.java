@@ -79,13 +79,13 @@ public class ProfileNeighbourActivity extends BaseActivity {
         this.configureToolBar();
 
         // Retrieves the neighbour from Intent
-        this.retrieveNeighbourFromIntent();
+        this.mNeighbour = this.retrieveNeighbourFromIntent();
 
         // Retrieves the favorite neighbour from SharedPreferences
-        this.retrieveFavoriteNeighbourFromSharedPreferences();
+        this.mFavoriteNeighbours = this.retrieveFavoriteNeighbourFromSharedPreferences();
 
         // Checks if the neighbour is into favorite
-        this.checkIfFavorite();
+        this.mIsFavorite = this.checkIfFavorite(this.mFavoriteNeighbours, this.mNeighbour);
 
         // Updates the UI
         this.updateUI();
@@ -119,15 +119,20 @@ public class ProfileNeighbourActivity extends BaseActivity {
 
     /**
      * Retrieves {@link Neighbour} thanks to the {@link Intent}
+     * @return a {@link Neighbour}
      */
-    private void retrieveNeighbourFromIntent() {
+    public Neighbour retrieveNeighbourFromIntent() {
         // Retrieves the Intent
         Intent intent = getIntent();
 
         // Retrieves the Neighbour if the Intent is not null
         if (intent != null) {
             String json = intent.getStringExtra(ListNeighbourActivity.INTENT_NEIGHBOUR);
-            this.mNeighbour = convertJsonToJava(json, Neighbour.class);
+
+            return convertJsonToJava(json, Neighbour.class);
+        }
+        else {
+            return null;
         }
     }
 
@@ -135,9 +140,10 @@ public class ProfileNeighbourActivity extends BaseActivity {
 
     /**
      * Retrieves a {@link List} of {@link Neighbour} thanks to {@link SharedPreferences}
+     * @return a {@link List} of {@link Neighbour}
      */
-    private void retrieveFavoriteNeighbourFromSharedPreferences() {
-        this.mFavoriteNeighbours = SaveTools.loadListFromSharedPreferences(this, ProfileNeighbourActivity.PREF_NEIGHBOURS, Neighbour.class);
+    public List<Neighbour> retrieveFavoriteNeighbourFromSharedPreferences() {
+        return SaveTools.loadListFromSharedPreferences(this, ProfileNeighbourActivity.PREF_NEIGHBOURS, Neighbour.class);
     }
 
     /**
@@ -170,14 +176,12 @@ public class ProfileNeighbourActivity extends BaseActivity {
 
     /**
      * Checks if {@link Neighbour} is into favorite thanks to {@link SharedPreferences}
+     * @param neighbourList a {@link List} of {@link Neighbour}
+     * @param neighbour a {@link Neighbour}
+     * @return a boolean
      */
-    private void checkIfFavorite() {
-        // Checks the presence of favorite
-        if (this.mFavoriteNeighbours == null) {
-            this.mIsFavorite = false;
-        } else {
-            this.mIsFavorite = this.mFavoriteNeighbours.contains(this.mNeighbour);
-        }
+    public boolean checkIfFavorite(final List<Neighbour> neighbourList, final Neighbour neighbour) {
+        return (neighbourList != null) && neighbourList.contains(neighbour);
     }
 
     // UI ******************************************************************************************
